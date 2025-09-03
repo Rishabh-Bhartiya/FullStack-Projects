@@ -56,7 +56,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({
       success: true,
       token,
-      user: { name: user.name, email: user.email },
+      user: { name: user.name, email: user.email, message: `${user.name.toUpperCase()} Register Successfully.` },
     });
 
   } catch (error) {
@@ -94,7 +94,7 @@ const loginUser = async (req, res) => {
         expiresIn: '1d',
       });
 
-      res.status(200).json({ success: true, token, user: { name: user.name, email: user.email } });
+      res.status(200).json({ success: true, token, user: { name: user.name, email: user.email, message: `${user.name.toUpperCase()} Login Successfully.` } });
     } else {
       // If passwords do not match, return an authentication failure message.
       return res.status(400).json({ success: false, message: 'Incorrect password.' });

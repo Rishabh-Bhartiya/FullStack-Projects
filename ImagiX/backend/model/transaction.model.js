@@ -18,13 +18,10 @@ import mongoose from "mongoose";
  * @property {string} razorpayPaymentId - The unique payment ID from Razorpay.
  */
 const TransactionSchema = new mongoose.Schema({
-    // Reference to the User model. Note: 'unique' should not be used here as a single user can have multiple transactions.
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-        // Yahan 'unique: true' ko hatana hai. Agar ye pehle se nahi tha,
-        // toh check karein ki kahin aur se unique index to nahi laga.
     },
     // The name of the credit plan.
     plan: {

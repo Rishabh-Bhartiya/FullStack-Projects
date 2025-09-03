@@ -23,7 +23,7 @@ function Home() {
       <Steps />
       <Description />
       <Testimonials />
-      <GenerateBtn />
+      <GenerateBtn message='See The Magic. Try Now' />
     </div>
   );
 }

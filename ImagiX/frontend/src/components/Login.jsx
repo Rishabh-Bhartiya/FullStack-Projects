@@ -23,6 +23,7 @@ function Login() {
                     setUser(data.user)
                     localStorage.setItem('token', data.token)
                     setShowLogin(false)
+                    toast.success(data.user.message)
                 } else {
                     toast.error(data.message)
                 }
@@ -32,7 +33,8 @@ function Login() {
                     setToken(data.token)
                     setUser(data.user)
                     localStorage.setItem('token', data.token)
-                    setShowLogin(false)
+                    setShowLogin(false)                    
+                    toast.success(data.user.message)
                     
                 } else {
                     toast.error(data.message)

@@ -65,6 +65,6 @@ export const generateImage = async (req, res) => {
         // Log the full error for debugging in development
         // console.error(error); 
         // Return a generic 500 status for the client
-        return res.status(500).json({ success: false, message: 'An internal server error occurred.' });
+        return res.status(500).json({ success: false, message: 'Generating This Type of Image is Against Our Policies' });
     }
 };

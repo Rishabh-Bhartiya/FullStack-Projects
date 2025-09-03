@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GenerateBtn from '../components/GenerateBtn'
 import { toast } from 'react-toastify';
 
 // Assets and context imports
@@ -100,48 +101,51 @@ function BuyCredit() {
     };
 
     return (
-        <motion.div
-            className='min-h-[80vh] text-center pt-14 mb-10'
-            initial={{ opacity: 0.2, y: 100 }}
-            transition={{ duration: 1 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-        >
-            {/* Section title and subtitle */}
-            <button className='border border-gray-700 text-gray-400 px-10 py-2 rounded-full mb-6'>
-                Our Plans
-            </button>
-            <h1 className='text-center text-3xl font-medium mb-6 sm:mb-10 text-gray-200'>
-                Choose The Plan
-            </h1>
-            
-            {/* Container for pricing plans */}
-            <div className='flex flex-wrap justify-center gap-6 text-left'>
-                {plans.map((item, index) => (
-                    <motion.div
-                        key={index}
-                        className='flex justify-center items-center flex-col bg-zinc-900 border border-zinc-800 rounded-lg py-12 px-8 text-gray-400 shadow-xl hover:scale-105 transition-all duration-500'
-                        whileHover={{ y: -5 }} // Add a subtle lift animation on hover
-                    >
-                        <img className='w-20' src={assets.logo} alt="Logo" />
-                        <p className='mt-3 mb-1 font-semibold text-blue-400'>{item.id}</p>
-                        <p className='text-sm'>{item.desc}</p>
-                        
-                        <p className='mt-6 text-gray-200'>
-                            <span className='text-3xl font-medium'>₹ {item.price} </span>
-                            <span className='text-sm text-gray-400'>/ {item.credits} Credits</span>
-                        </p>
-                        
-                        <button 
-                            onClick={() => paymentRazorpay(item.id)} 
-                            className='w-full bg-blue-600 text-white mt-8 text-sm rounded-md py-2.5 min-w-52 hover:bg-blue-700 transition-colors'
+        <div>
+            <motion.div
+                className='min-h-[80vh] text-center pt-14 mb-10'
+                initial={{ opacity: 0.2, y: 100 }}
+                transition={{ duration: 1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+            >
+                {/* Section title and subtitle */}
+                <button className='border border-gray-700 text-gray-400 px-10 py-2 rounded-full mb-6'>
+                    Our Plans
+                </button>
+                <h1 className='text-center text-3xl font-medium mb-6 sm:mb-10 text-gray-200'>
+                    Choose The Plan
+                </h1>
+
+                {/* Container for pricing plans */}
+                <div className='flex flex-wrap justify-center gap-6 text-left'>
+                    {plans.map((item, index) => (
+                        <motion.div
+                            key={index}
+                            className='flex justify-center items-center flex-col bg-zinc-900 border border-zinc-800 rounded-lg py-12 px-8 text-gray-400 shadow-xl hover:scale-105 transition-all duration-500'
+                            whileHover={{ y: -5 }} // Add a subtle lift animation on hover
                         >
-                            {user ? 'Purchase' : 'Get Started'}
-                        </button>
-                    </motion.div>
-                ))}
-            </div>
-        </motion.div>
+                            <img className='w-20' src={assets.logo} alt="Logo" />
+                            <p className='mt-3 mb-1 font-semibold text-blue-400'>{item.id}</p>
+                            <p className='text-sm'>{item.desc}</p>
+
+                            <p className='mt-6 text-gray-200'>
+                                <span className='text-3xl font-medium'>₹ {item.price} </span>
+                                <span className='text-sm text-gray-400'>/ {item.credits} Credits</span>
+                            </p>
+
+                            <button
+                                onClick={() => paymentRazorpay(item.id)}
+                                className='w-full bg-blue-600 text-white mt-8 text-sm rounded-md py-2.5 min-w-52 hover:bg-blue-700 transition-colors'
+                            >
+                                {user ? 'Purchase' : 'Get Started'}
+                            </button>
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+            <GenerateBtn message='Buy Credits For Generate More Images' />
+        </div>
     );
 }
 

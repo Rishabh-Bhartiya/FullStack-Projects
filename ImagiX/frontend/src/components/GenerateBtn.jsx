@@ -16,7 +16,7 @@ import { AppContext } from '../context/AppContext';
  * * The button's vibrant electric blue color and smooth hover effects are
  * designed to be highly visible and engaging against the dark background.
  */
-function GenerateBtn() {
+function GenerateBtn({ message}) {
   const { user, setShowLogin } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ function GenerateBtn() {
       viewport={{ once: true }}
     >
       <h1 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-200 mb-8'>
-        See The Magic. Try Now
+        {message}
       </h1>
 
       <motion.button

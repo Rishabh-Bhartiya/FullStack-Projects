@@ -43,25 +43,14 @@ const AppContextProvider = (props) => {
                 }
             }
         } catch (error) {
-
-            const { data } = await axios.post(backendUrl + '/api/image/generate-image', { prompt }, { headers: { token } });
-
-            // This is the key change: when an error occurs,
-            // we assume the data object would have had success: false.
-            // We can mimic the same logic here or handle it based on the error.
-
-            // A simple way to handle this is to use a generic error message
-            // and then apply the same credit balance and navigation logic.
-            if(data.creditBalance <= 0)
-            loadCreditsData();
-
-            // Note: creditBalance might not be available in an error object.
-            // You would need to decide how to handle this case.
-            // If you always want to check for zero credits on error,
-            // you'd need the credit balance from another source, or
-            // you could just assume the user might need more credits.
-            // For simplicity, let's just navigate.
-            navigate('/buy');
+            if (error.response.data.message === 'Insufficient credits.') {
+                toast.error(error.response.data.message)
+                navigate('/buy')
+            } else if (error.response.data.message === 'Generating This Type of Image is Against Our Policies') {
+                toast.error(error.response.data.message)
+            } else {
+                toast.error('Internal Server Error')
+            }
         }
     }
 
